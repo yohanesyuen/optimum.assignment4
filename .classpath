@@ -4,5 +4,32 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/yuen.ping/eclipse-workspace/Assignment5/lib/mysql-connector-java-5.1.18.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/annotations-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/catalina-storeconfig.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/ecj-4.6.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/jaspic-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-coyote.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-dbcp.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-i18n-es.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-i18n-fr.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-jdbc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-jni.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-util-scan.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/tomcat-websocket.jar"/>
+	<classpathentry kind="lib" path="C:/Users/yuen.ping/apache-tomcat-8.5.29-windows-x64/apache-tomcat-8.5.29/lib/websocket-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
