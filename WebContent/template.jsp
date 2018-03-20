@@ -11,15 +11,13 @@ pageEncoding="ISO-8859-1"%>
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="css/footer.css">
-    <title>Library Management System Mock Up</title>
+    <title>Employee Management</title>
   </head>
   <body>
     <jsp:include page="/fragments/header.jsp" />
-    <main role="main" class="container">
-    <p>
-      Content goes here...
-    </p>
-    </main>
+    <div class="container">
+    	<jsp:include page="/fragments/${template_file}.jsp" />
+    </div>
     <jsp:include page="/fragments/header.jsp" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
