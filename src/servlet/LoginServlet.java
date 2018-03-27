@@ -36,10 +36,11 @@ public class LoginServlet extends HttpServlet {
 		UserDAO dao = new UserDAOImpl();
 		User userRef = dao.authenticatePassword(username, password);
 		if (userRef != null) {
+			request.getRequestDispatcher("home").include(request, response);
 			HttpSession session = request.getSession();
 			User refUser = new User();
 			refUser.setName(userRef.getName());
-			session.setAttribute("User", userRef.getNRIC());
+			session.setAttribute("UID", userRef.getUserID());
 			response.sendRedirect("home");
 		}
 	}

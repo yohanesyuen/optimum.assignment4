@@ -18,6 +18,8 @@ public class User {
 	private String SecurityQuestion = new String();
 	private String SecurityAnswer   = new String();
 	
+	private Date LastLogin;
+	
 	private int loginAttempts;
 	
 	public int getUserID() {
@@ -100,5 +102,11 @@ public class User {
 	}
 	public void setLoginAttempts(int loginAttempts) {
 		this.loginAttempts = loginAttempts;
+	}
+	public Date getLastLogin() {
+		return LastLogin;
+	}
+	public void setLastLogin(Date last_login) {
+		this.LastLogin = last_login;
 	}
 }

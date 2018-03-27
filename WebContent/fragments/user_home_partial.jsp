@@ -1,1 +1,1 @@
-<div class="row">Welcome!</div>
+<div class="row">Welcome ${User.getName()}!</div>

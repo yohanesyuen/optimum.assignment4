@@ -41,6 +41,9 @@ public class UserDAOImpl implements UserDAO {
 			rs = pst.executeQuery();
 			if (rs.next()) {
 				User userRef = createUserFromResultSet(rs);
+				userRef.setPassword(null);
+				userRef.setSecurityAnswer(null);
+				userRef.setSecurityQuestion(null);
 				return userRef;
 			}
 		} catch (SQLException e) {
@@ -111,6 +114,7 @@ public class UserDAOImpl implements UserDAO {
 					// Reset login attempts
 					login_attempts=0;
 					userRef.setLoginAttempts(login_attempts);
+					updateLastLogin(userRef.getUserID());
 					updateUserStatus(userRef);
 					return userRef;
 				} else if(login_attempts < 3) {
@@ -129,6 +133,21 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private void updateLastLogin(int userID) {
+		Connection con = DatabaseConnection.getInstance().getConnection();
+		try {
+			String updateSQL = "UPDATE `USERS`";
+			updateSQL       += " SET `last_login`=?";
+			updateSQL       += " WHERE userID=?";
+			PreparedStatement pst = con.prepareStatement(updateSQL);
+			pst.setDate(1, new java.sql.Date(new java.util.Date().getTime()));
+			pst.setInt(2, userID);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -173,12 +192,13 @@ public class UserDAOImpl implements UserDAO {
 		Connection con = DatabaseConnection.getInstance().getConnection();
 		try {
 			String updateSQL = "UPDATE `USERS`";
-			updateSQL       += " SET login_attempts=?, status=?";
+			updateSQL       += " SET login_attempts=?, status=?, last_login=?";
 			updateSQL       += " WHERE userID=?";
 			PreparedStatement pst = con.prepareStatement(updateSQL);
 			pst.setInt(1, user.getLoginAttempts());
 			pst.setString(2, user.getStatus());
-			pst.setInt(3, user.getUserID());
+			pst.setDate(3, user.getLastLogin());
+			pst.setInt(4, user.getUserID());
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
