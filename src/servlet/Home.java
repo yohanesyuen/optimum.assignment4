@@ -27,7 +27,6 @@ public class Home extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("template_file", "login_partial");
 		request.getRequestDispatcher("/template.jsp").forward(request, response);
 	}
 

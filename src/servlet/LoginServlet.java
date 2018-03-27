@@ -37,8 +37,10 @@ public class LoginServlet extends HttpServlet {
 		User userRef = dao.authenticatePassword(username, password);
 		if (userRef != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", userRef.getNRIC());
-			response.sendRedirect("/home");
+			User refUser = new User();
+			refUser.setName(userRef.getName());
+			session.setAttribute("User", userRef.getNRIC());
+			response.sendRedirect("home");
 		}
 	}
 
