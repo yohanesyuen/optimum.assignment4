@@ -11,25 +11,25 @@ import model.User;
 
 public class UserDAOImpl implements UserDAO {
 
-//	Database Layout
-//	+-------------------+--------------+------+-----+---------+----------------+
-//	| Field             | Type         | Null | Key | Default | Extra          |
-//	+-------------------+--------------+------+-----+---------+----------------+
-//	| userID            | int(10)      | NO   | PRI | NULL    | auto_increment |
-//	| name              | varchar(30)  | YES  |     | NULL    |                |
-//	| nric              | varchar(9)   | YES  | UNI | NULL    |                |
-//	| email             | varchar(255) | YES  | UNI | NULL    |                |
-//	| dob               | date         | YES  |     | NULL    |                |
-//	| mobile            | varchar(8)   | YES  |     | NULL    |                |
-//	| password          | varchar(255) | YES  |     | NULL    |                |
-//	| role              | varchar(6)   | YES  |     | User    |                |
-//	| security_question | varchar(255) | YES  |     | NULL    |                |
-//	| security_answer   | varchar(255) | YES  |     | NULL    |                |
-//	| first_login       | tinyint(1)   | YES  |     | 1       |                |
-//	| status            | varchar(10)  | YES  |     | active  |                |
-//	| login_attempts    | int(10)      | YES  |     | 0       |                |
-//	+-------------------+--------------+------+-----+---------+----------------+
-	
+	// Database Layout
+	// +-------------------+--------------+------+-----+---------+----------------+
+	// | Field | Type | Null | Key | Default | Extra |
+	// +-------------------+--------------+------+-----+---------+----------------+
+	// | userID | int(10) | NO | PRI | NULL | auto_increment |
+	// | name | varchar(30) | YES | | NULL | |
+	// | nric | varchar(9) | YES | UNI | NULL | |
+	// | email | varchar(255) | YES | UNI | NULL | |
+	// | dob | date | YES | | NULL | |
+	// | mobile | varchar(8) | YES | | NULL | |
+	// | password | varchar(255) | YES | | NULL | |
+	// | role | varchar(6) | YES | | User | |
+	// | security_question | varchar(255) | YES | | NULL | |
+	// | security_answer | varchar(255) | YES | | NULL | |
+	// | first_login | tinyint(1) | YES | | 1 | |
+	// | status | varchar(10) | YES | | active | |
+	// | login_attempts | int(10) | YES | | 0 | |
+	// +-------------------+--------------+------+-----+---------+----------------+
+
 	@Override
 	public User getUser(int userID) {
 		Connection con = DatabaseConnection.getInstance().getConnection();
@@ -51,14 +51,14 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public boolean saveUser(User refUser) {
 		Connection con = DatabaseConnection.getInstance().getConnection();
 		try {
 			String insertSQL = "INSERT INTO `USERS`";
-			insertSQL       += " (name, nric, email, dob, mobile, password)";
-			insertSQL       += " VALUES (?, ?, ?, ?, ?, ?)";
+			insertSQL += " (name, nric, email, dob, mobile, password)";
+			insertSQL += " VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement pst = con.prepareStatement(insertSQL);
 			pst.setString(1, refUser.getName());
 			pst.setString(2, refUser.getNRIC());
@@ -76,13 +76,13 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return true;
 	}
-	
+
 	public boolean saveAuthDetails(User refUser) {
 		Connection con = DatabaseConnection.getInstance().getConnection();
 		try {
 			String updateSQL = "UPDATE `USERS`";
-			updateSQL       += " SET password=?, security_question=?, security_answer=?, first_login=?";
-			updateSQL       += " WHERE userID=?";
+			updateSQL += " SET password=?, security_question=?, security_answer=?, first_login=?";
+			updateSQL += " WHERE userID=?";
 			PreparedStatement pst = con.prepareStatement(updateSQL);
 			pst.setString(1, refUser.getPassword());
 			pst.setString(2, refUser.getSecurityQuestion());
@@ -112,38 +112,37 @@ public class UserDAOImpl implements UserDAO {
 				// Check user password
 				if (userRef.getPassword().equals(password)) {
 					// Reset login attempts
-					login_attempts=0;
+					login_attempts = 0;
 					userRef.setLoginAttempts(login_attempts);
 					updateLastLogin(userRef.getUserID());
 					updateUserStatus(userRef);
 					return userRef;
-				} else if(login_attempts < 3) {
+				} else if (login_attempts < 3) {
 					// Increment login attempts. Lock if > 3.
 					login_attempts++;
 					userRef.setLoginAttempts(login_attempts);
 					updateUserStatus(userRef);
-					if (login_attempts >=3) {
+					if (login_attempts >= 3) {
 						userRef.setLoginAttempts(login_attempts);
 						userRef.setStatus("locked");
 						updateUserStatus(userRef);
 					}
-				}				
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	private void updateLastLogin(int userID) {
 		Connection con = DatabaseConnection.getInstance().getConnection();
 		try {
 			String updateSQL = "UPDATE `USERS`";
-			updateSQL       += " SET `last_login`=?";
-			updateSQL       += " WHERE userID=?";
+			updateSQL += " SET `last_login`=NOW()";
+			updateSQL += " WHERE userID=?";
 			PreparedStatement pst = con.prepareStatement(updateSQL);
-			pst.setDate(1, new java.sql.Date(new java.util.Date().getTime()));
-			pst.setInt(2, userID);
+			pst.setInt(1, userID);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,7 +169,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	private User createUserFromResultSet(ResultSet rs) throws SQLException {
-		User refUser= new User();
+		User refUser = new User();
 		refUser.setUserID(rs.getInt("userID"));
 		refUser.setPassword(rs.getString("password"));
 		refUser.setName(rs.getString("name"));
@@ -186,14 +185,14 @@ public class UserDAOImpl implements UserDAO {
 		refUser.setLoginAttempts(rs.getInt("login_attempts"));
 		return refUser;
 	}
-	
+
 	@Override
 	public void updateUserStatus(User user) {
 		Connection con = DatabaseConnection.getInstance().getConnection();
 		try {
 			String updateSQL = "UPDATE `USERS`";
-			updateSQL       += " SET login_attempts=?, status=?, last_login=?";
-			updateSQL       += " WHERE userID=?";
+			updateSQL += " SET login_attempts=?, status=?, last_login=?";
+			updateSQL += " WHERE userID=?";
 			PreparedStatement pst = con.prepareStatement(updateSQL);
 			pst.setInt(1, user.getLoginAttempts());
 			pst.setString(2, user.getStatus());
